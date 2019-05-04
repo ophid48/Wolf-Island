@@ -1,16 +1,32 @@
 #pragma once
 #include "Animal.h"
-class Rabbit :
+class Rabbits :
 	public Animal
 {
+	Texture texture_of_rabbit;
 	Sprite rabbit;
 	vector<Sprite> rabbits;
 public:
-	Rabbit();
-	void moveRabbit(Sprite &rabbit, int random, float time);
+	Rabbits();
+
+	void getCoord() {
+		for (int i = 0; i < rabbits.size(); i++) {
+			cout << i + 1 << ")\n x: " << rabbits[i].getPosition().x << "\n y: " << rabbits[i].getPosition().y << endl;
+		}
+	}
 
 	void addRabbit() {
+		rabbit.setPosition(Vector2f(451, 551));
 		rabbits.insert(rabbits.begin(), rabbit);
+	}
+
+	void setTexture() {
+		texture_of_rabbit.loadFromFile("images/rabbit.png");
+		rabbit.setTexture(texture_of_rabbit);
+	}
+
+	vector<Sprite>& getVectorOfRabbits() {
+		return rabbits;
 	}
 
 	void birth() {
@@ -26,10 +42,8 @@ public:
 	}
 
 	void setPosition() {
-		this->x = 451;
-		this->y = 551;
+		rabbits[0].setPosition(Vector2f(451, 551));
 	}
-	~Rabbit();
+	~Rabbits();
 };
 
-	

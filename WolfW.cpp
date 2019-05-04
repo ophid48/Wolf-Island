@@ -2,11 +2,14 @@
 
 
 
-WolfW::WolfW()
+WolfWs::WolfWs()
 {
 }
 
+void move(Sprite &wolf_w, int random) {
+	
+}
 
-WolfW::~WolfW()
+WolfWs::~WolfWs()
 {
 }
