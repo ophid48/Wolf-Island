@@ -15,10 +15,10 @@ using namespace std;
 int main()
 {
 
-	//Font font;//øðèôò 
-	//font.loadFromFile("font/arial.ttf");//ïåðåäàåì íàøåìó øðèôòó ôàéë øðèôòà
-	//Text text("", font, 16);//ñîçäàåì îáúåêò òåêñò. çàêèäûâàåì â îáúåêò òåêñò ñòðîêó, øðèôò, ðàçìåð øðèôòà(â ïèêñåëÿõ);//ñàì îáúåêò òåêñò (íå ñòðîêà)
-	//text.setPosition(71, 15);//çàäàåì ïîçèöèþ òåêñòà
+	//Font font;//ÑˆÑ€Ð¸Ñ„Ñ‚
+	//font.loadFromFile("font/arial.ttf");//Ã¯Ã¥Ã°Ã¥Ã¤Ã Ã¥Ã¬ Ã­Ã Ã¸Ã¥Ã¬Ã³ Ã¸Ã°Ã¨Ã´Ã²Ã³ Ã´Ã Ã©Ã« Ã¸Ã°Ã¨Ã´Ã²Ã 
+	//Text text("", font, 16);//Ã±Ã®Ã§Ã¤Ã Ã¥Ã¬ Ã®Ã¡ÃºÃ¥ÃªÃ² Ã²Ã¥ÃªÃ±Ã². Ã§Ã ÃªÃ¨Ã¤Ã»Ã¢Ã Ã¥Ã¬ Ã¢ Ã®Ã¡ÃºÃ¥ÃªÃ² Ã²Ã¥ÃªÃ±Ã² Ã±Ã²Ã°Ã®ÃªÃ³, Ã¸Ã°Ã¨Ã´Ã², Ã°Ã Ã§Ã¬Ã¥Ã° Ã¸Ã°Ã¨Ã´Ã²Ã (Ã¢ Ã¯Ã¨ÃªÃ±Ã¥Ã«Ã¿Ãµ);//Ã±Ã Ã¬ Ã®Ã¡ÃºÃ¥ÃªÃ² Ã²Ã¥ÃªÃ±Ã² (Ã­Ã¥ Ã±Ã²Ã°Ã®ÃªÃ )
+	//text.setPosition(71, 15);//Ã§Ã Ã¤Ã Ã¥Ã¬ Ã¯Ã®Ã§Ã¨Ã¶Ã¨Ã¾ Ã²Ã¥ÃªÃ±Ã²Ã 
 
 
 	//srand(time(NULL));
@@ -43,14 +43,14 @@ int main()
 	//	
 
 	//	sf::Event event;
-	//	Vector2i pos = Mouse::getPosition(window);//çàáèðàåì êîîðäèíàòû êóðñîðà
+	//	Vector2i pos = Mouse::getPosition(window);//Ã§Ã Ã¡Ã¨Ã°Ã Ã¥Ã¬ ÃªÃ®Ã®Ã°Ã¤Ã¨Ã­Ã Ã²Ã» ÃªÃ³Ã°Ã±Ã®Ã°Ã 
 	//	
 	//	
 	//	while (window.pollEvent(event))
 	//	{
-	//		// êíîïêè ñòàðò è ñòîï
-	//		if (event.type == Event::MouseButtonPressed)//åñëè íàæàòà êëàâèøà ìûøè
-	//			if (event.key.code == Mouse::Left)//à èìåííî ëåâàÿ
+	//		// ÃªÃ­Ã®Ã¯ÃªÃ¨ Ã±Ã²Ã Ã°Ã² Ã¨ Ã±Ã²Ã®Ã¯
+	//		if (event.type == Event::MouseButtonPressed)//Ã¥Ã±Ã«Ã¨ Ã­Ã Ã¦Ã Ã²Ã  ÃªÃ«Ã Ã¢Ã¨Ã¸Ã  Ã¬Ã»Ã¸Ã¨
+	//			if (event.key.code == Mouse::Left)//Ã  Ã¨Ã¬Ã¥Ã­Ã­Ã® Ã«Ã¥Ã¢Ã Ã¿
 	//				if (pos.x >= 350 && pos.x <= 450 && pos.y >= 0 && pos.y <= 50) {
 	//					isStart = 1;
 	//				}
@@ -58,9 +58,9 @@ int main()
 	//					isStart = 0;
 	//				}
 	//		
-	//		// êíîïêè ðåãóëèðîâàíèÿ ñêîðîñòè
-	//		if (event.type == Event::MouseButtonPressed)//åñëè íàæàòà êëàâèøà ìûøè
-	//			if (event.key.code == Mouse::Left)//à èìåííî ëåâàÿ
+	//		// ÃªÃ­Ã®Ã¯ÃªÃ¨ Ã°Ã¥Ã£Ã³Ã«Ã¨Ã°Ã®Ã¢Ã Ã­Ã¨Ã¿ Ã±ÃªÃ®Ã°Ã®Ã±Ã²Ã¨
+	//		if (event.type == Event::MouseButtonPressed)//Ã¥Ã±Ã«Ã¨ Ã­Ã Ã¦Ã Ã²Ã  ÃªÃ«Ã Ã¢Ã¨Ã¸Ã  Ã¬Ã»Ã¸Ã¨
+	//			if (event.key.code == Mouse::Left)//Ã  Ã¨Ã¬Ã¥Ã­Ã­Ã® Ã«Ã¥Ã¢Ã Ã¿
 	//				if (pos.x >= 110 && pos.x <= 129 && pos.y >= 16 && pos.y <= 35 && speed < 900) {
 	//					speed += 100;
 	//					cout << speed << endl;
@@ -83,7 +83,7 @@ int main()
 	//		}
 	//	}
 
-	//	text.setString(to_string(speed));//çàäàåò ñòðîêó òåêñòó
+	//	text.setString(to_string(speed));//Ã§Ã Ã¤Ã Ã¥Ã² Ã±Ã²Ã°Ã®ÃªÃ³ Ã²Ã¥ÃªÃ±Ã²Ã³
 
 	//	if (isStart) {
 	//		for (int i = 0; i < rabbits.size(); i++) {
