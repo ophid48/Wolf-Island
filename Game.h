@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "WolfM.h"
 #include "WolfW.h"
 #include "Rabbit.h"
@@ -30,6 +30,9 @@ public:
 	Game();
 
 
+	//Р•СЃР»Рё РІРѕР»Рє Рё РІРѕР»С‡РёС†Р° РѕРєР°Р¶СѓС‚СЃСЏ РІ РѕРґРЅРѕРј РєРІР°РґСЂР°С‚Рµ Рё С‚Р°Рј РЅРµС‚ РєСЂРѕР»РёРєР°,
+	//РєРѕС‚РѕСЂРѕРіРѕ РЅСѓР¶РЅРѕ СЃСЉРµСЃС‚СЊ, РѕРЅРё РїСЂРѕРёР·РІРѕРґСЏС‚ РїРѕС‚РѕРјСЃС‚РІРѕ СЃР»СѓС‡Р°РёМ†РЅРѕРіРѕ РїРѕР»Р°.
+	//TODO!!!!
 	bool isRestart() {
 		return restart;
 	}
@@ -59,11 +62,11 @@ public:
 		RenderWindow window_setup(sf::VideoMode(1000, 1050), "Island");
 		while (window_setup.isOpen()) {
 			Event event;
-			Vector2i pos = Mouse::getPosition(window_setup);//забираем координаты курсора
+			Vector2i pos = Mouse::getPosition(window_setup);//Р·Р°Р±РёСЂР°РµРј РєРѕРѕСЂРґРёРЅР°С‚С‹ РєСѓСЂСЃРѕСЂР°
 			while (window_setup.pollEvent(event))
 			{
 
-				if (event.type == Event::MouseButtonPressed)//если нажата клавиша мыши
+				if (event.type == Event::MouseButtonPressed)//РµСЃР»Рё РЅР°Р¶Р°С‚Р° РєР»Р°РІРёС€Р° РјС‹С€Рё
 				{
 					if (pos.x >= 701 && pos.x <= 749 && pos.y >= 1 && pos.y <= 48 && event.key.code == Mouse::Left) {
 						button = "rabbit";
@@ -148,10 +151,10 @@ public:
 		texture_of_background.loadFromFile("images/background_2.png");
 		background.setTexture(texture_of_background);
 
-		Font font;//шрифт 
-		font.loadFromFile("font/arial.ttf");//передаем нашему шрифту файл шрифта
+		Font font;//С€СЂРёС„С‚ 
+		font.loadFromFile("font/arial.ttf");//РїРµСЂРµРґР°РµРј РЅР°С€РµРјСѓ С€СЂРёС„С‚Сѓ С„Р°Р№Р» С€СЂРёС„С‚Р°
 		Text text(to_string(speed), font, 16);
-		text.setPosition(71, 15);//задаем позицию текста
+		text.setPosition(71, 15);//Р·Р°РґР°РµРј РїРѕР·РёС†РёСЋ С‚РµРєСЃС‚Р°
 
 
 		//for (int i = 0; i < count_of_wolfW; i++) {
@@ -171,12 +174,12 @@ public:
 		RenderWindow window(sf::VideoMode(1000, 1050), "Island");
 		while (window.isOpen()) {
 			Event event;
-			Vector2i pos = Mouse::getPosition(window);//забираем координаты курсора
+			Vector2i pos = Mouse::getPosition(window);//Р·Р°Р±РёСЂР°РµРј РєРѕРѕСЂРґРёРЅР°С‚С‹ РєСѓСЂСЃРѕСЂР°
 			while (window.pollEvent(event))
 			{
-				// кнопки старт и стоп
-				if (event.type == Event::MouseButtonPressed)//если нажата клавиша мыши
-					if (event.key.code == Mouse::Left)//а именно левая
+				// РєРЅРѕРїРєРё СЃС‚Р°СЂС‚ Рё СЃС‚РѕРї
+				if (event.type == Event::MouseButtonPressed)//РµСЃР»Рё РЅР°Р¶Р°С‚Р° РєР»Р°РІРёС€Р° РјС‹С€Рё
+					if (event.key.code == Mouse::Left)//Р° РёРјРµРЅРЅРѕ Р»РµРІР°СЏ
 						if (pos.x >= 350 && pos.x <= 450 && pos.y >= 0 && pos.y <= 50) {
 							isStart = 1;
 						}
@@ -184,28 +187,28 @@ public:
 							isStart = 0;
 						}
 
-				// кнопки регулирования скорости
-				if (event.type == Event::MouseButtonPressed)//если нажата клавиша мыши
-					if (event.key.code == Mouse::Left)//а именно левая
+				// РєРЅРѕРїРєРё СЂРµРіСѓР»РёСЂРѕРІР°РЅРёСЏ СЃРєРѕСЂРѕСЃС‚Рё
+				if (event.type == Event::MouseButtonPressed)//РµСЃР»Рё РЅР°Р¶Р°С‚Р° РєР»Р°РІРёС€Р° РјС‹С€Рё
+					if (event.key.code == Mouse::Left)//Р° РёРјРµРЅРЅРѕ Р»РµРІР°СЏ
 						if (pos.x >= 110 && pos.x <= 129 && pos.y >= 16 && pos.y <= 35 && speed < 900) {
 							speed += 100;
-							// обновляем строку со скоростью
+							// РѕР±РЅРѕРІР»СЏРµРј СЃС‚СЂРѕРєСѓ СЃРѕ СЃРєРѕСЂРѕСЃС‚СЊСЋ
 							text.setString(to_string(speed));
 							cout << speed << endl;
 						}
 						else if (pos.x >= 140 && pos.x <= 159 && pos.y >= 16 && pos.y <= 35 && speed > 0) {
 							speed -= 100;
-							// обновляем строку со скоростью
+							// РѕР±РЅРѕРІР»СЏРµРј СЃС‚СЂРѕРєСѓ СЃРѕ СЃРєРѕСЂРѕСЃС‚СЊСЋ
 							text.setString(to_string(speed));
 							cout << speed << endl;
 						}
-				// закрытие окна
+				// Р·Р°РєСЂС‹С‚РёРµ РѕРєРЅР°
 				if (event.type == sf::Event::KeyPressed &&
 					event.key.code == sf::Keyboard::Escape ||
 					event.type == event.Closed)
 					window.close();
 
-				// для дебага
+				// РґР»СЏ РґРµР±Р°РіР°
 				if (event.type == Event::KeyPressed &&
 					event.key.code == Keyboard::F) {
 					cout << "Rabbits:" << endl;
@@ -217,7 +220,7 @@ public:
 				}
 			}
 
-			// если не нажата кнопка "стоп"
+			// РµСЃР»Рё РЅРµ РЅР°Р¶Р°С‚Р° РєРЅРѕРїРєР° "СЃС‚РѕРї"
 			if (isStart) {
 				for (int i = 0; i < wolfMs.size(); i++) {
 					Vector2f hunt = wolfMs[i].Hunting(rabbits.getVectorOfRabbits(), wolfMs[i].getSprite().getPosition().x,
