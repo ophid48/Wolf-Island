@@ -1,34 +1,36 @@
-
 #include "Animal.h"
-class WolfWs :
+class WolfW :
 	public Animal
 {
+	
 	Texture texture_of_wolf_w;
 	Sprite wolf_w;
-	vector<Sprite> wolfWs;
+	double score;
 public:
-	WolfWs();
+	WolfW();
 
-	void getCoord() {
-		for (int i = 0; i < wolfWs.size(); i++) {
-			cout << i + 1 << ")\n x: " << wolfWs[i].getPosition().x << "\n y: " << wolfWs[i].getPosition().y << endl;
-		}
-	}
+	void getCoord(vector<WolfW> &wolfWs);
 
-	void addWolfW() {
-		wolf_w.setPosition(getRandomPosition());
-		wolfWs.insert(wolfWs.begin(), wolf_w);
-	}
+	double getScore();
 
-	vector<Sprite>& getVectorOfWolfWs() {
-		return wolfWs;
-	}
+	void setScore(double score);
 
-	bool isHunting(); //TODO
+	// если кролик находится в одном квадрате с волчицой, то он умирает
+	// иначе она теряет 0.1 очка
+	void eatRabbits(vector<Sprite> &rabbits, int x, int y);
 
-	void setTexture() {
-		texture_of_wolf_w.loadFromFile("images/wolf_1.png");
-		wolf_w.setTexture(texture_of_wolf_w);
-	}
-	~WolfWs();
+	// удаляет все объекты, которые находятся в данных координатах
+	void deleteAnimal(vector<WolfW>& animals, int dx, int dy);
+
+	// возвращает вектор переменных типа Sprite, соторый состоит из спрайтов волчиц
+	vector<Sprite> getVectorOfSprite(vector<WolfW> &wolfW);
+	
+	// возвращает ссылку на поле "wolf_m" типа Sprite
+	Sprite& getSprite();
+
+	// возвращает позицию ближайшего кролика
+	// если его нет, то возвращает (-1, -1)
+	Vector2f Hunting(vector<Sprite> rabbits, int x, int y);
+
+	~WolfW();
 };

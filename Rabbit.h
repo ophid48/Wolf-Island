@@ -9,41 +9,21 @@ class Rabbits :
 public:
 	Rabbits();
 
-	void getCoord() {
-		for (int i = 0; i < rabbits.size(); i++) {
-			cout << i + 1 << ")\n x: " << rabbits[i].getPosition().x << "\n y: " << rabbits[i].getPosition().y << endl;
-		}
-	}
+	void getCoord();
 
-	void addRabbit() {
-		rabbit.setPosition(Vector2f(451, 551));
-		rabbits.insert(rabbits.begin(), rabbit);
-	}
+	// удаляет все объекты, которые находятся в данных координатах
+	void deleteAnimal(vector<Sprite>& animals, int dx, int dy);
 
-	void setTexture() {
-		texture_of_rabbit.loadFromFile("images/rabbit.png");
-		rabbit.setTexture(texture_of_rabbit);
-	}
+	// добавляет кролика в вектор
+	void addRabbit();
 
-	vector<Sprite>& getVectorOfRabbits() {
-		return rabbits;
-	}
+	void setTexture();
 
-	void birth() {
-		for (int i = 0; i < rabbits.size(); i++) {
-			bool isRabbit = (rand() % 10 + 1) <= 2;// будет ли рождение кролика
-			if (isRabbit && rabbits.size() < 100) {
-				addRabbit();
-				rabbits[0].setPosition(rabbits[i + 1].getPosition().x,
-					rabbits[i + 1].getPosition().y);
-				i += 1;
-			}
-		}
-	}
+	vector<Sprite>& getVectorOfRabbits();
 
-	void setPosition() {
-		rabbits[0].setPosition(Vector2f(451, 551));
-	}
+	// рождение кроликов
+	void birth();
+
 	~Rabbits();
 };
 

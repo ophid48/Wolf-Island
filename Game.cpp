@@ -4,6 +4,7 @@
 
 Game::Game()
 {
+	restart = 1;
 }
 
 

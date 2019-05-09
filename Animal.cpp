@@ -6,12 +6,7 @@ Animal::Animal()
 {
 }
 
-// функция для перемещения животного из центра области 3x3
-// принимает первым аргументом объект для перемещения
-// вторым аргументом целое число - номер квадрата:
-//	1	2	3
-//	8	9	4
-//	7	6	5
+
 void Animal::move(Sprite &animal, int random) {
 	switch (random)
 	{
@@ -60,6 +55,20 @@ void Animal::move(Sprite &animal, int random) {
 	}
 }
 
+
+Vector2f Animal::getRandomPosition() {
+	Vector2f arr[20][20];
+	int dx, dy{ 51 };
+	for (int i = 0; i < 20; i++) {
+		dx = 1;
+		dy += 50;
+		for (int j = 0; j < 20; j++) {
+			arr[i][j] = Vector2f(dx, dy);
+			dx += 50;
+		}
+	}
+	return arr[rand() % 19 + 0][rand() % 19 + 0];
+}
 
 Animal::~Animal()
 {
