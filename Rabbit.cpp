@@ -59,4 +59,5 @@ void Rabbits::birth() {
 
 Rabbits::~Rabbits()
 {
+	rabbits.clear();
 }

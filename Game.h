@@ -25,7 +25,7 @@ class Game
 
 	bool restart;
 
-
+	bool hunt_;
 public:
 	Game();
 
@@ -70,16 +70,26 @@ public:
 				{
 					if (pos.x >= 701 && pos.x <= 749 && pos.y >= 1 && pos.y <= 48 && event.key.code == Mouse::Left) {
 						button = "rabbit";
+						texture_of_setup.loadFromFile("images/background_3_1.png");
+						background.setTexture(texture_of_setup);
 						cout << "Select rabbit" << endl;
 					}
 					else if (pos.x >= 751 && pos.x <= 799 && pos.y >= 1 && pos.y <= 48 && event.key.code == Mouse::Left) {
 						button = "wolf_w";
+						texture_of_setup.loadFromFile("images/background_3_2.png");
+						background.setTexture(texture_of_setup);
 						cout << "Select wolf_w" << endl;
 					}
 					else if (pos.x >= 801 && pos.x <= 849 && pos.y >= 1 && pos.y <= 48 && event.key.code == Mouse::Left) {
 						button = "wolf_m";
+						texture_of_setup.loadFromFile("images/background_3_3.png");
+						background.setTexture(texture_of_setup);
 						cout << "Select wolf_m" << endl;
 					}
+					//else if (button != "") {
+					//	texture_of_setup.loadFromFile("images/background_3.png");
+					//	background.setTexture(texture_of_setup);
+					//}
 
 					int dx, dy{ 1 };
 					for (int i = 0; i < 20; i++) {
@@ -139,11 +149,7 @@ public:
 			window_setup.display();
 		}
 
-
-		count_of_wolfM = 1;
-		count_of_wolfW = 1;
-
-		restart = 1;
+		restart = 0;
 		////////////////////////////////////////////////////////////////////
 
 		srand(time(NULL));
@@ -171,7 +177,7 @@ public:
 		//}
 
 
-		RenderWindow window(sf::VideoMode(1000, 1050), "Island");
+		RenderWindow window(sf::VideoMode(1000, 1050), "Island", Style::None);
 		while (window.isOpen()) {
 			Event event;
 			Vector2i pos = Mouse::getPosition(window);//забираем координаты курсора
@@ -202,11 +208,31 @@ public:
 							text.setString(to_string(speed));
 							cout << speed << endl;
 						}
-				// закрытие окна
-				if (event.type == sf::Event::KeyPressed &&
-					event.key.code == sf::Keyboard::Escape ||
-					event.type == event.Closed)
-					window.close();
+
+				// кнопка рестарта
+				if (event.type == Event::MouseButtonPressed)//если нажата клавиша мыши
+					if (event.key.code == Mouse::Left)//а именно левая
+					{
+						if (pos.x >= 899 && pos.x <= 948 && pos.y >= 0 && pos.y <= 49) {
+							rabbits.~Rabbits();
+							wolfMs.clear();
+							wolfWs.clear();
+							button = "";
+							restart = 1;
+							return;
+						}
+					}
+
+				// кнопка закрытия окна
+				if (event.type == Event::MouseButtonPressed)//если нажата клавиша мыши
+					if (event.key.code == Mouse::Left)//а именно левая
+					{
+						if (pos.x >= 950 && pos.x <= 999 && pos.y >= 0 && pos.y <= 49) {
+							restart = 0;
+							return;
+						}
+					}
+
 
 				// для дебага
 				if (event.type == Event::KeyPressed &&
@@ -220,13 +246,14 @@ public:
 				}
 			}
 
-			// если не нажата кнопка "стоп"
+			// если не была нажата кнопка "стоп"
 			if (isStart) {
 				for (int i = 0; i < wolfMs.size(); i++) {
 					Vector2f hunt = wolfMs[i].Hunting(rabbits.getVectorOfRabbits(), wolfMs[i].getSprite().getPosition().x,
 						wolfMs[i].getSprite().getPosition().y);
 					if (hunt != Vector2f(-1, -1)) {
 						wolfMs[i].getSprite().setPosition(hunt);
+						hunt_ = 1;
 						//cout << "Hunt search" << endl;
 					}
 					else {
@@ -262,35 +289,38 @@ public:
 
 				// eat rabbits and die if not enough scores
 				for (int i = 0; i < wolfMs.size(); i++) {
-					wolfMs[i].eatRabbits(rabbits.getVectorOfRabbits(), wolfMs[i].getSprite().getPosition().x,
-						wolfMs[i].getSprite().getPosition().y);
-					if (wolfMs[i].birth(wolfW.getVectorOfSprite(wolfWs), wolfMs[i].getSprite().getPosition().x,
-						wolfMs[i].getSprite().getPosition().y)) {
-						if (wolfMs.size() < 100 && wolfWs.size() < 100) {
-							int random = rand() % 2;
-							if (random) {
+					if (hunt_ || wolfMs[i].getScore()>=0.1)
+						hunt_ = !wolfMs[i].eatRabbits(rabbits.getVectorOfRabbits(), wolfMs[i].getSprite().getPosition().x,
+							wolfMs[i].getSprite().getPosition().y);
+					else {
+						if (wolfMs[i].birth(wolfW.getVectorOfSprite(wolfWs), wolfMs[i].getSprite().getPosition().x,
+							wolfMs[i].getSprite().getPosition().y)) {
+							if (wolfMs.size() < 100 && wolfWs.size() < 100) {
+								int random = rand() % 2;
+								if (random) {
+									wolfMs.insert(wolfMs.begin(), wolfM);
+									i++;
+									wolfMs[0].getSprite().setPosition(wolfMs[i].getSprite().getPosition().x,
+										wolfMs[i].getSprite().getPosition().y);
+								}
+								else {
+									wolfWs.insert(wolfWs.begin(), wolfW);
+									wolfWs[0].getSprite().setPosition(wolfMs[i].getSprite().getPosition().x,
+										wolfMs[i].getSprite().getPosition().y);
+
+								}
+							}
+							else if (wolfMs.size() < 100) {
 								wolfMs.insert(wolfMs.begin(), wolfM);
 								i++;
 								wolfMs[0].getSprite().setPosition(wolfMs[i].getSprite().getPosition().x,
 									wolfMs[i].getSprite().getPosition().y);
 							}
-							else {
+							else if (wolfWs.size() < 100) {
 								wolfWs.insert(wolfWs.begin(), wolfW);
 								wolfWs[0].getSprite().setPosition(wolfMs[i].getSprite().getPosition().x,
 									wolfMs[i].getSprite().getPosition().y);
-
 							}
-						}
-						else if (wolfMs.size() < 100) {
-							wolfMs.insert(wolfMs.begin(), wolfM);
-							i++;
-							wolfMs[0].getSprite().setPosition(wolfMs[i].getSprite().getPosition().x,
-								wolfMs[i].getSprite().getPosition().y);
-						}
-						else if (wolfWs.size() < 100) {
-							wolfWs.insert(wolfWs.begin(), wolfW);
-							wolfWs[0].getSprite().setPosition(wolfMs[i].getSprite().getPosition().x,
-								wolfMs[i].getSprite().getPosition().y);
 						}
 					}
 					//cout << "wolf_m:\n " << i << ":\n  " << wolfMs[i].getScore() << endl;
@@ -323,8 +353,6 @@ public:
 			for (int i = 0; i < wolfMs.size(); i++) {
 				window.draw(wolfMs[i].getSprite());
 			}
-
-
 			window.display();
 		}
 	}

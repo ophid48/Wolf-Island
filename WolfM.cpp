@@ -25,7 +25,7 @@ Sprite& WolfM::getSprite() {
 	return wolf_m;
 }
 
-void WolfM::eatRabbits(vector<Sprite> &rabbits, int x, int y) {
+bool WolfM::eatRabbits(vector<Sprite> &rabbits, int x, int y) {
 	// был ли съеден кролик
 	bool flag = 0;
 	for (int i = 0; i < rabbits.size(); i++) {
@@ -35,7 +35,13 @@ void WolfM::eatRabbits(vector<Sprite> &rabbits, int x, int y) {
 			rabbits.erase(rabbits.begin() + i);
 		}
 	}
-	if (flag == 0 || rabbits.size() == 0) score -= 0.1;
+	if (flag == 0 || rabbits.size() == 0) {
+		score -= 0.1;
+		return 0;
+	}
+	else if (flag == 1) {
+		return 1;
+	}
 }
 
 void WolfM::deleteAnimal(vector<WolfM>& animals, int dx, int dy) {
