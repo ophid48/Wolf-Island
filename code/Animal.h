@@ -1,9 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <vector>
+
 #include <iostream>
-using namespace std;
-using namespace sf;
 class Animal
 {
 
