@@ -137,19 +137,6 @@ Game::start(){
 		text.setPosition(71, 15);//задаем позицию текста
 
 
-		//for (int i = 0; i < count_of_wolfW; i++) {
-		//	wolfWs.insert(wolfWs.begin(), wolfW);
-		//	//wolfWs[0].getSprite().setPosition(wolfW.getRandomPosition());
-		//	wolfWs[0].getSprite().setPosition(1, 51);
-		//}
-
-
-		//for (int i = 0; i < count_of_wolfW; i++) {
-		//	wolfMs.insert(wolfMs.begin(), wolfM);
-		//	//wolfMs[0].getSprite().setPosition(wolfM.getRandomPosition());
-		//	wolfMs[0].getSprite().setPosition(1, 51);
-		//}
-
 
 		RenderWindow window(sf::VideoMode(1000, 1050), "Island", Style::None);
 		while (window.isOpen()) {
@@ -193,6 +180,7 @@ Game::start(){
 							wolfWs.clear();
 							button = "";
 							restart = 1;
+							isStart = 0;
 							return;
 						}
 					}
@@ -227,7 +215,7 @@ Game::start(){
 						wolfMs[i].getSprite().getPosition().y);
 					if (hunt != Vector2f(-1, -1)) {
 						wolfMs[i].getSprite().setPosition(hunt);
-						hunt_ = 1;
+						wolfMs[i].setHunt(1);
 						//cout << "Hunt search" << endl;
 					}
 					else {
@@ -263,10 +251,11 @@ Game::start(){
 
 				// eat rabbits and die if not enough scores
 				for (int i = 0; i < wolfMs.size(); i++) {
-					if (hunt_ || wolfMs[i].getScore()>=0.1)
+					if (wolfMs[i].getHunt())
 						hunt_ = !wolfMs[i].eatRabbits(rabbits.getVectorOfRabbits(), wolfMs[i].getSprite().getPosition().x,
 							wolfMs[i].getSprite().getPosition().y);
 					else {
+						wolfMs[i].decScore();
 						if (wolfMs[i].birth(wolfW.getVectorOfSprite(wolfWs), wolfMs[i].getSprite().getPosition().x,
 							wolfMs[i].getSprite().getPosition().y)) {
 							if (wolfMs.size() < 100 && wolfWs.size() < 100) {

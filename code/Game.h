@@ -1,12 +1,18 @@
-﻿#pragma once
+#pragma once
 #include "WolfM.h"
 #include "WolfW.h"
 #include "Rabbit.h"
 #include "Animal.h"
+
+#include <SFML/Graphics.hpp>
+#include <vector>
 #include <ctime>
 #include <iostream>
 #include <string>
 #include <math.h>
+#include <string>
+using namespace sf;
+using namespace std;
 
 class Game
 {
@@ -25,7 +31,6 @@ class Game
 
 	bool restart;
 
-	bool hunt_;
 public:
 	Game();
 

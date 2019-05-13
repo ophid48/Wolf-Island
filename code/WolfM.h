@@ -6,6 +6,9 @@ class WolfM :
 	Texture texture_of_wolf_m;
 	Sprite wolf_m;
 	double score;
+
+	// охотится ли волк
+	bool hunt_;
 public:
 	WolfM();
 
@@ -13,6 +16,12 @@ public:
 
 	double getScore();
 	
+	void setHunt(bool hunt);
+
+	bool getHunt();
+
+	void decScore();
+
 	void setScore(double score);
 	
 	// возвращает ссылку на поле "wolf_m" типа Sprite

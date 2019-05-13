@@ -13,6 +13,18 @@ void WolfM::getCoord(vector<WolfM> &wolfMs) {
 	}
 }
 
+void WolfM::setHunt(bool hunt) {
+	this->hunt_ = hunt;
+}
+
+bool WolfM::getHunt() {
+	return hunt_;
+}
+
+void WolfM::decScore() {
+	hunt_ -= 0.1;
+}
+
 double WolfM::getScore() {
 	return score;
 }
